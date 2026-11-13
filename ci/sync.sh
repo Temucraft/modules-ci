@@ -21,6 +21,7 @@ declare -A label=(
 problems=0
 rows=()
 while IFS=$'\t' read -r name fork branch parent fork_sha sha status mode; do
+    [[ "$parent" == - ]] && parent=""  # no original (own repo)
     note=""
     if [[ "$status" == pass && "$SYNC" == true && "$mode" == merge ]]; then
         if [[ "$(gh api "repos/$parent/commits/$branch" --jq .sha 2>/dev/null)" != "$sha" ]]; then

@@ -97,7 +97,7 @@ write_results() {
     local n
     : > "$RESULTS"
     for n in CORE "${names[@]}"; do
-        printf '%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\n' "$n" "${FORK[$n]}" "${BRANCH[$n]}" "${PARENT[$n]:-}" \
+        printf '%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\n' "$n" "${FORK[$n]}" "${BRANCH[$n]}" "${PARENT[$n]:--}" \
             "${FORK_SHA[$n]}" "${UP_SHA[$n]}" "${STATUS[$n]}" "${MODE[$n]}" >> "$RESULTS"
     done
 }
