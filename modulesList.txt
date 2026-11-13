@@ -47,5 +47,5 @@ https://github.com/Temucraft/mod-racial-trait-swap.git  # fork of azerothcore/mo
 https://github.com/Temucraft/mod-demonic-pact-classic.git  # fork of sogladev/mod-demonic-pact-classic
 https://github.com/Temucraft/mod-ghost-speed.git  # fork of sogladev/mod-ghost-speed
 https://github.com/Temucraft/mod-dynamic-scaling.git  # fork of TheSCREWEDSoftware/mod-dynamic-scaling
-# Local module (a folder path is copied into every source, see cloneModules.sh)
-/root/AzerothCore/mod-temucraft
+https://github.com/Temucraft/mod-ryans-debug.git  # fork of TheSCREWEDSoftware/mod-ryans-debug
+https://github.com/Temucraft/mod-temucraft.git  # Temucraft SQL (private)
