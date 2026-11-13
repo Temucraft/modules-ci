@@ -1,0 +1,78 @@
+name: weekly-module-build
+
+on:
+  schedule:
+    # Mondays 04:00 UTC
+    - cron: '0 4 * * 1'
+  workflow_dispatch:
+    inputs:
+      sync:
+        description: Move the Temucraft forks forward when they compile
+        type: boolean
+        default: true
+
+permissions:
+  contents: write
+
+concurrency:
+  group: ${{ github.workflow }}
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 340
+    env:
+      GH_TOKEN: ${{ github.token }}
+      CCACHE_DIR: ${{ github.workspace }}/ccache
+      CCACHE_BASEDIR: ${{ github.workspace }}
+      CCACHE_MAXSIZE: 5G
+      CCACHE_SLOPPINESS: pch_defines,time_macros,include_file_mtime
+      CCACHE_COMPRESS: 1
+      CCACHE_COMPRESSLEVEL: 3
+    steps:
+      - uses: actions/checkout@v7
+
+      # same packages as AzerothCore's own linux-build action
+      - name: Install build dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get remove -y needrestart || true
+          sudo apt-get -y install ccache clang cmake curl make unzip build-essential cmake-data \
+            libboost-all-dev libbz2-dev libmysql++-dev libreadline6-dev libssl-dev libtool openssl zlib1g-dev \
+            google-perftools libmysqlclient-dev libncurses5-dev
+
+      - name: Restore compiler cache
+        uses: actions/cache@v6
+        with:
+          path: ${{ github.workspace }}/ccache
+          key: ccache-${{ github.run_id }}
+          restore-keys: ccache-
+
+      - name: Build latest core + modules
+        id: build
+        run: bash ci/build.sh
+
+      - name: Update forks and write status
+        if: always() && hashFiles('results.tsv') != ''
+        env:
+          GH_TOKEN: ${{ secrets.FORK_SYNC_TOKEN }}
+          # scheduled runs always sync, manual runs only when the box is ticked; nothing syncs without the token
+          SYNC: ${{ secrets.FORK_SYNC_TOKEN != '' && (github.event_name == 'schedule' || inputs.sync) }}
+        run: bash ci/sync.sh
+
+      - name: Commit STATUS.md
+        if: always() && hashFiles('STATUS.md') != ''
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add STATUS.md
+          git commit -q -m "Weekly build status" && git push || echo "STATUS.md unchanged"
+
+      - name: Upload build logs
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: build-logs
+          path: logs/
+          retention-days: 14

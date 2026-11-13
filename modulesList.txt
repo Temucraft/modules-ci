@@ -1,0 +1,51 @@
+# One module per line: <git url> [branch]
+# Lines starting with # and blank lines are ignored.
+# Each module is cloned into <source>/modules/<repo name> by cloneModules.sh
+# Order matters for the PTR module test (compile.sh): a module goes after the modules it depends on.
+# mod-playerbots is required by the core (REQUIRED_MODULES in compile.sh) and is always built first.
+https://github.com/Temucraft/mod-playerbots.git
+https://github.com/Temucraft/mod-individual-progression.git  # fork of ZhengPeiRu21/mod-individual-progression
+https://github.com/Temucraft/mod-chromiecraft-smartstone.git  # fork of chromiecraft/mod-chromiecraft-smartstone
+https://github.com/Temucraft/mod-1v1-arena.git  # fork of azerothcore/mod-1v1-arena
+https://github.com/Temucraft/mod-arena-3v3-solo-queue.git  # fork of azerothcore/mod-arena-3v3-solo-queue
+https://github.com/Temucraft/mod-arena-rating-memory.git  # fork of azerothcore/mod-arena-rating-memory
+https://github.com/Temucraft/mod-arena-replay.git  # fork of azerothcore/mod-arena-replay
+https://github.com/Temucraft/mod-bg-item-reward.git  # fork of azerothcore/mod-bg-item-reward
+https://github.com/Temucraft/mod-cfbg.git  # fork of azerothcore/mod-cfbg
+https://github.com/Temucraft/mod-chromie-xp.git  # fork of azerothcore/mod-chromie-xp
+https://github.com/Temucraft/mod-cta-switch.git  # fork of azerothcore/mod-cta-switch
+https://github.com/Temucraft/mod-dmf-switch.git  # fork of azerothcore/mod-dmf-switch
+https://github.com/Temucraft/mod-duel-reset.git  # fork of azerothcore/mod-duel-reset
+https://github.com/Temucraft/mod-ale.git  # fork of azerothcore/mod-ale
+https://github.com/Temucraft/mod-low-level-arena.git  # fork of azerothcore/mod-low-level-arena
+https://github.com/Temucraft/mod-low-level-rbg.git  # fork of azerothcore/mod-low-level-rbg
+https://github.com/Temucraft/mod-multi-client-check.git  # fork of azerothcore/mod-multi-client-check
+https://github.com/Temucraft/mod-npc-spectator.git  # fork of gozzim/mod-npc-spectator
+https://github.com/Temucraft/mod-pvp-quests.git  # fork of azerothcore/mod-pvp-quests
+https://github.com/Temucraft/mod-pvp-titles.git  # fork of azerothcore/mod-pvp-titles
+https://github.com/Temucraft/mod-queue-list-cache.git  # fork of azerothcore/mod-queue-list-cache
+https://github.com/Temucraft/mod-qr-code.git  # fork of azerothcore/mod-qr-code
+https://github.com/Temucraft/mod-rdf-expansion.git  # fork of azerothcore/mod-rdf-expansion
+https://github.com/Temucraft/mod-transmog.git  # fork of azerothcore/mod-transmog
+https://github.com/Temucraft/mod-weekend-xp.git  # fork of azerothcore/mod-weekend-xp
+https://github.com/Temucraft/mod-dungeon-clear.git  # fork of jrad7/mod-dungeon-clear
+https://github.com/Temucraft/mod-instance-reset.git  # fork of azerothcore/mod-instance-reset
+https://github.com/Temucraft/mod-ah-bot.git  # fork of azerothcore/mod-ah-bot
+https://github.com/Temucraft/mod-aoe-loot.git  # fork of azerothcore/mod-aoe-loot
+https://github.com/Temucraft/mod-assistant.git  # fork of noisiver/mod-assistant
+https://github.com/Temucraft/mod-quest-loot-party.git  # fork of pangolp/mod-quest-loot-party
+https://github.com/Temucraft/mod-no-hearthstone-cooldown.git  # fork of BytesGalore/mod-no-hearthstone-cooldown
+https://github.com/Temucraft/mod-starter-guild.git  # fork of azerothcore/mod-starter-guild
+https://github.com/Temucraft/mod-streamingclient.git  # fork of noisiver/mod-streamingclient
+https://github.com/Temucraft/mod-guildfunds.git  # fork of noisiver/mod-guildfunds
+https://github.com/Temucraft/mod-skip-dk-starting-area.git  # fork of azerothcore/mod-skip-dk-starting-area
+https://github.com/Temucraft/mod-guildhouse.git  # fork of azerothcore/mod-guildhouse
+https://github.com/Temucraft/mod-increment-cache-version.git  # fork of sogladev/mod-increment-cache-version
+https://github.com/Temucraft/mod-npc-enchanter.git  # fork of azerothcore/mod-npc-enchanter
+https://github.com/Temucraft/mod-ptr-template.git  # fork of azerothcore/mod-ptr-template
+https://github.com/Temucraft/mod-racial-trait-swap.git  # fork of azerothcore/mod-racial-trait-swap
+https://github.com/Temucraft/mod-demonic-pact-classic.git  # fork of sogladev/mod-demonic-pact-classic
+https://github.com/Temucraft/mod-ghost-speed.git  # fork of sogladev/mod-ghost-speed
+https://github.com/Temucraft/mod-dynamic-scaling.git  # fork of TheSCREWEDSoftware/mod-dynamic-scaling
+# Local module (a folder path is copied into every source, see cloneModules.sh)
+/root/AzerothCore/mod-temucraft
