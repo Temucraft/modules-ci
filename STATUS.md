@@ -1,6 +1,6 @@
 # Weekly module build
 
-Last run: 2026-11-13 16:11 UTC, [run log](https://github.com/Temucraft/modules-ci/actions/runs/43445138808)
+Last run: 2026-11-13 16:21 UTC, [run log](https://github.com/Temucraft/modules-ci/actions/runs/43460514403)
 
 | Module | Temucraft fork | Original | Version | Result |
 |---|---|---|---|---|
@@ -49,3 +49,5 @@ Last run: 2026-11-13 16:11 UTC, [run log](https://github.com/Temucraft/modules-c
 | mod-demonic-pact-classic | [Temucraft/mod-demonic-pact-classic](https://github.com/Temucraft/mod-demonic-pact-classic) | [sogladev/mod-demonic-pact-classic](https://github.com/sogladev/mod-demonic-pact-classic) | `b5d2973` | ✅ up to date |
 | mod-ghost-speed | [Temucraft/mod-ghost-speed](https://github.com/Temucraft/mod-ghost-speed) | [sogladev/mod-ghost-speed](https://github.com/sogladev/mod-ghost-speed) | `5124b37` | ✅ up to date |
 | mod-dynamic-scaling | [Temucraft/mod-dynamic-scaling](https://github.com/Temucraft/mod-dynamic-scaling) | [TheSCREWEDSoftware/mod-dynamic-scaling](https://github.com/TheSCREWEDSoftware/mod-dynamic-scaling) | `25b1727` | ✅ up to date |
+| mod-ryans-debug | [Temucraft/mod-ryans-debug](https://github.com/Temucraft/mod-ryans-debug) | [TheSCREWEDSoftware/mod-ryans-debug](https://github.com/TheSCREWEDSoftware/mod-ryans-debug) | `8c8fbf8` | ✅ up to date |
+| mod-temucraft | [Temucraft/mod-temucraft](https://github.com/Temucraft/mod-temucraft) | [8d271291a20373e9d9986dd20d0357892a35c4f5](https://github.com/8d271291a20373e9d9986dd20d0357892a35c4f5) | [`8d27129` → `own`](https://github.com/8d271291a20373e9d9986dd20d0357892a35c4f5/compare/8d271291a20373e9d9986dd20d0357892a35c4f5...own) | ❌ update failed |
