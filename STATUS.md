@@ -1,13 +1,13 @@
 # Weekly module build
 
-Last run: 2026-11-13 16:21 UTC, [run log](https://github.com/Temucraft/modules-ci/actions/runs/43460514403)
+Last run: 2026-11-16 13:18 UTC, [run log](https://github.com/Temucraft/modules-ci/actions/runs/43867321923)
 
 | Module | Temucraft fork | Original | Version | Result |
 |---|---|---|---|---|
-| **core** | [Temucraft/azerothcore-wotlk](https://github.com/Temucraft/azerothcore-wotlk) | [mod-playerbots/azerothcore-wotlk](https://github.com/mod-playerbots/azerothcore-wotlk) | `1788b66` | ✅ up to date |
-| mod-playerbots | [Temucraft/mod-playerbots](https://github.com/Temucraft/mod-playerbots) | [mod-playerbots/mod-playerbots](https://github.com/mod-playerbots/mod-playerbots) | `405f811` | ✅ up to date |
+| **core** | [Temucraft/azerothcore-wotlk](https://github.com/Temucraft/azerothcore-wotlk) | [mod-playerbots/azerothcore-wotlk](https://github.com/mod-playerbots/azerothcore-wotlk) | [`1788b66` + `32fd347`](https://github.com/Temucraft/azerothcore-wotlk/compare/Playerbot...mod-playerbots:Playerbot) | ✅ updated (merged into the fork) |
+| mod-playerbots | [Temucraft/mod-playerbots](https://github.com/Temucraft/mod-playerbots) | [mod-playerbots/mod-playerbots](https://github.com/mod-playerbots/mod-playerbots) | [`405f811` → `ecc4a53`](https://github.com/mod-playerbots/mod-playerbots/compare/405f81196161017eebae3ee7a612d786a3ed2a9d...ecc4a537a3b43056e412fae63fb4a4271849b472) | ✅ updated |
 | mod-individual-progression | [Temucraft/mod-individual-progression](https://github.com/Temucraft/mod-individual-progression) | [ZhengPeiRu21/mod-individual-progression](https://github.com/ZhengPeiRu21/mod-individual-progression) | `e179555` | ✅ up to date |
-| mod-chromiecraft-smartstone | [Temucraft/mod-chromiecraft-smartstone](https://github.com/Temucraft/mod-chromiecraft-smartstone) | [chromiecraft/mod-chromiecraft-smartstone](https://github.com/chromiecraft/mod-chromiecraft-smartstone) | `cf0f254` | ✅ up to date |
+| mod-chromiecraft-smartstone | [Temucraft/mod-chromiecraft-smartstone](https://github.com/Temucraft/mod-chromiecraft-smartstone) | [chromiecraft/mod-chromiecraft-smartstone](https://github.com/chromiecraft/mod-chromiecraft-smartstone) | [`cf0f254` → `eb83220`](https://github.com/chromiecraft/mod-chromiecraft-smartstone/compare/cf0f254c1b3b150b1933747c8263eaae0bebb1d3...eb83220428861c4bf5bc1c59967259559fb5bb59) | ✅ updated |
 | mod-1v1-arena | [Temucraft/mod-1v1-arena](https://github.com/Temucraft/mod-1v1-arena) | [azerothcore/mod-1v1-arena](https://github.com/azerothcore/mod-1v1-arena) | `5ef5708` | ✅ up to date |
 | mod-arena-3v3-solo-queue | [Temucraft/mod-arena-3v3-solo-queue](https://github.com/Temucraft/mod-arena-3v3-solo-queue) | [azerothcore/mod-arena-3v3-solo-queue](https://github.com/azerothcore/mod-arena-3v3-solo-queue) | `5cfecf7` | ✅ up to date |
 | mod-arena-rating-memory | [Temucraft/mod-arena-rating-memory](https://github.com/Temucraft/mod-arena-rating-memory) | [azerothcore/mod-arena-rating-memory](https://github.com/azerothcore/mod-arena-rating-memory) | `662b743` | ✅ up to date |
@@ -30,7 +30,7 @@ Last run: 2026-11-13 16:21 UTC, [run log](https://github.com/Temucraft/modules-c
 | mod-rdf-expansion | [Temucraft/mod-rdf-expansion](https://github.com/Temucraft/mod-rdf-expansion) | [azerothcore/mod-rdf-expansion](https://github.com/azerothcore/mod-rdf-expansion) | `c7a91c5` | ✅ up to date |
 | mod-transmog | [Temucraft/mod-transmog](https://github.com/Temucraft/mod-transmog) | [azerothcore/mod-transmog](https://github.com/azerothcore/mod-transmog) | `d309745` | ✅ up to date |
 | mod-weekend-xp | [Temucraft/mod-weekend-xp](https://github.com/Temucraft/mod-weekend-xp) | [azerothcore/mod-weekend-xp](https://github.com/azerothcore/mod-weekend-xp) | `d0ae9c6` | ✅ up to date |
-| mod-dungeon-clear | [Temucraft/mod-dungeon-clear](https://github.com/Temucraft/mod-dungeon-clear) | [jrad7/mod-dungeon-clear](https://github.com/jrad7/mod-dungeon-clear) | `484c802` | ✅ up to date |
+| mod-dungeon-clear | [Temucraft/mod-dungeon-clear](https://github.com/Temucraft/mod-dungeon-clear) | [jrad7/mod-dungeon-clear](https://github.com/jrad7/mod-dungeon-clear) | [`484c802` → `142732c`](https://github.com/jrad7/mod-dungeon-clear/compare/484c802b2f4534a935b7d20cbb29e27d72d388e2...142732c59ce1597e6407ec5a23c6b308a9d4b219) | ✅ updated |
 | mod-instance-reset | [Temucraft/mod-instance-reset](https://github.com/Temucraft/mod-instance-reset) | [azerothcore/mod-instance-reset](https://github.com/azerothcore/mod-instance-reset) | `1e2c207` | ✅ up to date |
 | mod-ah-bot | [Temucraft/mod-ah-bot](https://github.com/Temucraft/mod-ah-bot) | [azerothcore/mod-ah-bot](https://github.com/azerothcore/mod-ah-bot) | `c11d831` | ✅ up to date |
 | mod-aoe-loot | [Temucraft/mod-aoe-loot](https://github.com/Temucraft/mod-aoe-loot) | [azerothcore/mod-aoe-loot](https://github.com/azerothcore/mod-aoe-loot) | `957f9a1` | ✅ up to date |
@@ -48,6 +48,6 @@ Last run: 2026-11-13 16:21 UTC, [run log](https://github.com/Temucraft/modules-c
 | mod-racial-trait-swap | [Temucraft/mod-racial-trait-swap](https://github.com/Temucraft/mod-racial-trait-swap) | [azerothcore/mod-racial-trait-swap](https://github.com/azerothcore/mod-racial-trait-swap) | `8ae1e6f` | ✅ up to date |
 | mod-demonic-pact-classic | [Temucraft/mod-demonic-pact-classic](https://github.com/Temucraft/mod-demonic-pact-classic) | [sogladev/mod-demonic-pact-classic](https://github.com/sogladev/mod-demonic-pact-classic) | `b5d2973` | ✅ up to date |
 | mod-ghost-speed | [Temucraft/mod-ghost-speed](https://github.com/Temucraft/mod-ghost-speed) | [sogladev/mod-ghost-speed](https://github.com/sogladev/mod-ghost-speed) | `5124b37` | ✅ up to date |
-| mod-dynamic-scaling | [Temucraft/mod-dynamic-scaling](https://github.com/Temucraft/mod-dynamic-scaling) | [TheSCREWEDSoftware/mod-dynamic-scaling](https://github.com/TheSCREWEDSoftware/mod-dynamic-scaling) | `25b1727` | ✅ up to date |
+| mod-dynamic-scaling | [Temucraft/mod-dynamic-scaling](https://github.com/Temucraft/mod-dynamic-scaling) | [TheSCREWEDSoftware/mod-dynamic-scaling](https://github.com/TheSCREWEDSoftware/mod-dynamic-scaling) | [`25b1727` → `117a306`](https://github.com/TheSCREWEDSoftware/mod-dynamic-scaling/compare/25b1727179d4cf7fcf448f11a6c2e62dcc4d7585...117a306a1655a75d33824943a5b7ed70da34b6ea) | ✅ updated |
 | mod-ryans-debug | [Temucraft/mod-ryans-debug](https://github.com/Temucraft/mod-ryans-debug) | [TheSCREWEDSoftware/mod-ryans-debug](https://github.com/TheSCREWEDSoftware/mod-ryans-debug) | `8c8fbf8` | ✅ up to date |
-| mod-temucraft | [Temucraft/mod-temucraft](https://github.com/Temucraft/mod-temucraft) | [8d271291a20373e9d9986dd20d0357892a35c4f5](https://github.com/8d271291a20373e9d9986dd20d0357892a35c4f5) | [`8d27129` → `own`](https://github.com/8d271291a20373e9d9986dd20d0357892a35c4f5/compare/8d271291a20373e9d9986dd20d0357892a35c4f5...own) | ❌ update failed |
+| mod-temucraft | [Temucraft/mod-temucraft](https://github.com/Temucraft/mod-temucraft) |  | `8d27129` | ➖ not a fork |
