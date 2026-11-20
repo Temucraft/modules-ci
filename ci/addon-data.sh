@@ -4,7 +4,8 @@
 #
 # Needs: a MySQL server reachable as $MYSQL (default "mysql -h127.0.0.1 -uroot -proot"), git, python3.
 # Optional: DBC_ZIP_URL, a zip of the client DBCs (Spell, SpellDuration, Talent, FactionTemplate, SkillLine,
-# SkillLineAbility, SkillRaceClassInfo, WorldMapArea, AreaTrigger) and, under stock/, the stock 3.3.5a ones (Spell, Talent, TalentTab, SkillLine,
+# SkillLineAbility, SkillRaceClassInfo, WorldMapArea, AreaTrigger; Leatrix Maps and AtlasLoot also use Map, AreaTable
+# and TaxiNodes when they are there) and, under stock/, the stock 3.3.5a ones (Spell, Talent, TalentTab, SkillLine,
 # SkillLineAbility, SkillRaceClassInfo, SpellIcon, SpellDuration, SpellRadius, SpellRange, SpellCastTimes,
 # SpellRuneCost): without it the generators that need DBCs are skipped.
 # Optional: PUSH=true and a token git can use (gh auth setup-git), to push the changes.
@@ -83,6 +84,18 @@ else
   summary+=("AoWoW expansion tags skipped: aowow has no setup/tools/temucraft-expansions.py yet")
 fi
 
+# AtlasLoot: loot tables of our dungeons and raids (no DBCs needed; Map.dbc, when the zip has it, for instance names)
+ATLASLOOT_REPO=${ATLASLOOT_REPO:-https://github.com/Temucraft/AtlasLoot_Temucraft.git}
+if git ls-remote --exit-code -q "$ATLASLOOT_REPO" HEAD > /dev/null 2>&1; then
+  rm -rf AtlasLoot_Temucraft
+  git clone -q "$ATLASLOOT_REPO" AtlasLoot_Temucraft
+  python3 -I AtlasLoot_Temucraft/tools/gen_atlasloot_data.py --db "$DB" --mysql "$MYSQL" --modules modules \
+    $( [ -d dbc ] && echo --dbc dbc )
+  commit AtlasLoot_Temucraft "Loot tables from the Temucraft world database"
+else
+  summary+=("AtlasLoot skipped: $ATLASLOOT_REPO doesn't exist")
+fi
+
 # What's Training: class trainer spells
 if [ -d dbc ]; then
   rm -rf WhatsTraining-Temucraft
@@ -104,6 +117,16 @@ if [ -d dbc ]; then
     commit GatherMate-Temucraft "Node data from the Temucraft world database"
   else
     summary+=("GatherMate skipped: the DBC zip has no WorldMapArea.dbc")
+  fi
+
+  # Leatrix Maps: zone levels and icons (entrances, flight masters, spirit healers, portals) of our new zones
+  if [ -f dbc/WorldMapArea.dbc ]; then
+    rm -rf Leatrix_Maps-Temucraft
+    git clone -q https://github.com/Temucraft/Leatrix_Maps-Temucraft.git
+    python3 -I Leatrix_Maps-Temucraft/tools/gen_ltm_data.py --db "$DB" --dbc dbc --mysql "$MYSQL"
+    commit Leatrix_Maps-Temucraft "Zone levels and icons from the Temucraft world database"
+  else
+    summary+=("Leatrix Maps skipped: the DBC zip has no WorldMapArea.dbc")
   fi
 
   # Questie: quests, NPCs, objects and items from this database, into the Temucraft/Questie fork (only if the fork
