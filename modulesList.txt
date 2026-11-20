@@ -8,7 +8,7 @@ https://github.com/Temucraft/mod-playerbots.git
 https://github.com/Temucraft/mod-individual-progression.git
 https://github.com/Temucraft/mod-transmog.git
 https://github.com/Temucraft/mod-worgoblin-high-elf.git retail-races
-https://github.com/Temucraft/mod-temucraft.git
+https://github.com/Temucraft/mod-temucraft.git master
 https://github.com/Temucraft/mod-temucraft-world.git
 https://github.com/Temucraft/mod-temucraft-lostlands.git
 https://github.com/Temucraft/mod-temucraft-account-wide.git
@@ -64,3 +64,5 @@ https://github.com/Temucraft/mod-temucraft-zone-access.git
 https://github.com/TheSCREWEDSoftware/mod-dynamic-scaling.git
 https://github.com/TheSCREWEDSoftware/mod-combo-points.git
 https://github.com/TheSCREWEDSoftware/mod-ryans-debug.git
+https://github.com/azerothcore/mod-breaking-news-override.git
+https://github.com/Temucraft/mod-questie-bridge.git
