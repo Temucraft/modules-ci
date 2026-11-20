@@ -31,6 +31,11 @@ for dir in base/db_world updates/db_world updates/pending_db_world custom/db_wor
   [ -d "core/data/sql/$dir" ] || continue
   for f in $(find "core/data/sql/$dir" -name '*.sql' | sort); do sql "$f"; done
 done
+# the ids the core SQL has (stock): the AoWoW expansion tags leave these alone
+mkdir -p stock-ids
+for t in creature_template:entry gameobject_template:entry item_template:entry quest_template:ID spell_dbc:ID; do
+  $MYSQL -N -B "$DB" -e "SELECT \`${t#*:}\` FROM \`${t%%:*}\`" > "stock-ids/${t%%:*}.txt" 2>> "$WORK/sql-errors.log" || true
+done
 echo "::endgroup::"
 
 echo "::group::Module SQL"
@@ -66,6 +71,17 @@ commit() {
     summary+=("$(basename "$1"): no change")
   fi
 }
+
+# AoWoW: expansion tags from the module SQL (no DBCs needed); the changes page below adds to the same clone
+rm -rf aowow
+git clone -q --depth 1 --filter=blob:none --sparse https://github.com/Temucraft/aowow.git aowow
+git -C aowow sparse-checkout set setup/temucraft setup/tools
+if [ -f aowow/setup/tools/temucraft-expansions.py ]; then
+  python3 -I aowow/setup/tools/temucraft-expansions.py --modules modules --stock-ids stock-ids \
+    -o aowow/setup/temucraft/expansions.json
+else
+  summary+=("AoWoW expansion tags skipped: aowow has no setup/tools/temucraft-expansions.py yet")
+fi
 
 # What's Training: class trainer spells
 if [ -d dbc ]; then
@@ -107,18 +123,15 @@ if [ -d dbc ]; then
 
   # AoWoW changes page: stock DBCs against ours (the zip's, then every module's client patch) and this database
   if [ -n "$(ls dbc-stock 2>/dev/null)" ]; then
-    rm -rf aowow
-    git clone -q --depth 1 --filter=blob:none --sparse https://github.com/Temucraft/aowow.git aowow
-    git -C aowow sparse-checkout set setup/temucraft setup/tools
     python3 -I aowow/setup/tools/temucraft-changes.py --stock dbc-stock --layer dbc --modules modules --db "$DB" \
       --mysql "$MYSQL" --notes aowow/setup/temucraft/changes-notes.json -o aowow/setup/temucraft/changes.json
-    commit aowow "Changes page data from the Temucraft DBCs and database"
   else
     summary+=("AoWoW changes skipped: the DBC zip has no stock/ folder")
   fi
 else
   summary+=("DBC generators skipped: set the DBC_ZIP_URL secret")
 fi
+commit aowow "Changes page and expansion tag data from the Temucraft DBCs and database"
 
 printf '%s\n' "${summary[@]}"
 if [ -n "${GITHUB_STEP_SUMMARY:-}" ]; then printf -- '- %s\n' "${summary[@]}" >> "$GITHUB_STEP_SUMMARY"; fi
