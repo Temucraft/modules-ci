@@ -1,51 +1,66 @@
 # One module per line: <git url> [branch]
 # Lines starting with # and blank lines are ignored.
 # Each module is cloned into <source>/modules/<repo name> by cloneModules.sh
-# Order matters for the PTR module test (compile.sh): a module goes after the modules it depends on.
-# mod-playerbots is required by the core (REQUIRED_MODULES in compile.sh) and is always built first.
+# Order: mod-playerbots first (the core needs it), the other forks, Temucraft's base data
+# (mod-temucraft, -world, -lostlands), the Temucraft modules, then Ryan's own modules.
+
 https://github.com/Temucraft/mod-playerbots.git
-https://github.com/Temucraft/mod-individual-progression.git  # fork of ZhengPeiRu21/mod-individual-progression
-https://github.com/Temucraft/mod-chromiecraft-smartstone.git  # fork of chromiecraft/mod-chromiecraft-smartstone
-https://github.com/Temucraft/mod-1v1-arena.git  # fork of azerothcore/mod-1v1-arena
-https://github.com/Temucraft/mod-arena-3v3-solo-queue.git  # fork of azerothcore/mod-arena-3v3-solo-queue
-https://github.com/Temucraft/mod-arena-rating-memory.git  # fork of azerothcore/mod-arena-rating-memory
-https://github.com/Temucraft/mod-arena-replay.git  # fork of azerothcore/mod-arena-replay
-https://github.com/Temucraft/mod-bg-item-reward.git  # fork of azerothcore/mod-bg-item-reward
-https://github.com/Temucraft/mod-cfbg.git  # fork of azerothcore/mod-cfbg
-https://github.com/Temucraft/mod-chromie-xp.git  # fork of azerothcore/mod-chromie-xp
-https://github.com/Temucraft/mod-cta-switch.git  # fork of azerothcore/mod-cta-switch
-https://github.com/Temucraft/mod-dmf-switch.git  # fork of azerothcore/mod-dmf-switch
-https://github.com/Temucraft/mod-duel-reset.git  # fork of azerothcore/mod-duel-reset
-https://github.com/Temucraft/mod-ale.git  # fork of azerothcore/mod-ale
-https://github.com/Temucraft/mod-low-level-arena.git  # fork of azerothcore/mod-low-level-arena
-https://github.com/Temucraft/mod-low-level-rbg.git  # fork of azerothcore/mod-low-level-rbg
-https://github.com/Temucraft/mod-multi-client-check.git  # fork of azerothcore/mod-multi-client-check
-https://github.com/Temucraft/mod-npc-spectator.git  # fork of gozzim/mod-npc-spectator
-https://github.com/Temucraft/mod-pvp-quests.git  # fork of azerothcore/mod-pvp-quests
-https://github.com/Temucraft/mod-pvp-titles.git  # fork of azerothcore/mod-pvp-titles
-https://github.com/Temucraft/mod-queue-list-cache.git  # fork of azerothcore/mod-queue-list-cache
-https://github.com/Temucraft/mod-qr-code.git  # fork of azerothcore/mod-qr-code
-https://github.com/Temucraft/mod-rdf-expansion.git  # fork of azerothcore/mod-rdf-expansion
-https://github.com/Temucraft/mod-transmog.git  # fork of azerothcore/mod-transmog
-https://github.com/Temucraft/mod-weekend-xp.git  # fork of azerothcore/mod-weekend-xp
-https://github.com/Temucraft/mod-dungeon-clear.git  # fork of jrad7/mod-dungeon-clear
-https://github.com/Temucraft/mod-instance-reset.git  # fork of azerothcore/mod-instance-reset
-https://github.com/Temucraft/mod-ah-bot.git  # fork of azerothcore/mod-ah-bot
-https://github.com/Temucraft/mod-aoe-loot.git  # fork of azerothcore/mod-aoe-loot
-https://github.com/Temucraft/mod-assistant.git  # fork of noisiver/mod-assistant
-https://github.com/Temucraft/mod-quest-loot-party.git  # fork of pangolp/mod-quest-loot-party
-https://github.com/Temucraft/mod-no-hearthstone-cooldown.git  # fork of BytesGalore/mod-no-hearthstone-cooldown
-https://github.com/Temucraft/mod-starter-guild.git  # fork of azerothcore/mod-starter-guild
-https://github.com/Temucraft/mod-streamingclient.git  # fork of noisiver/mod-streamingclient
-https://github.com/Temucraft/mod-guildfunds.git  # fork of noisiver/mod-guildfunds
-https://github.com/Temucraft/mod-skip-dk-starting-area.git  # fork of azerothcore/mod-skip-dk-starting-area
-https://github.com/Temucraft/mod-guildhouse.git  # fork of azerothcore/mod-guildhouse
-https://github.com/Temucraft/mod-increment-cache-version.git  # fork of sogladev/mod-increment-cache-version
-https://github.com/Temucraft/mod-npc-enchanter.git  # fork of azerothcore/mod-npc-enchanter
-https://github.com/Temucraft/mod-ptr-template.git  # fork of azerothcore/mod-ptr-template
-https://github.com/Temucraft/mod-racial-trait-swap.git  # fork of azerothcore/mod-racial-trait-swap
-https://github.com/Temucraft/mod-demonic-pact-classic.git  # fork of sogladev/mod-demonic-pact-classic
-https://github.com/Temucraft/mod-ghost-speed.git  # fork of sogladev/mod-ghost-speed
-https://github.com/Temucraft/mod-dynamic-scaling.git  # fork of TheSCREWEDSoftware/mod-dynamic-scaling
-https://github.com/Temucraft/mod-ryans-debug.git  # fork of TheSCREWEDSoftware/mod-ryans-debug
-https://github.com/Temucraft/mod-temucraft.git  # Temucraft SQL (private)
+https://github.com/Temucraft/mod-individual-progression.git
+https://github.com/Temucraft/mod-transmog.git
+https://github.com/Temucraft/mod-worgoblin-high-elf.git retail-races
+https://github.com/Temucraft/mod-temucraft.git
+https://github.com/Temucraft/mod-temucraft-world.git
+https://github.com/Temucraft/mod-temucraft-lostlands.git
+https://github.com/Temucraft/mod-temucraft-account-wide.git
+https://github.com/Temucraft/mod-temucraft-aoe-loot.git
+https://github.com/Temucraft/mod-temucraft-auto-learn.git
+https://github.com/Temucraft/mod-temucraft-camping.git
+https://github.com/Temucraft/mod-temucraft-challenges.git
+https://github.com/Temucraft/mod-temucraft-checkpoints.git
+https://github.com/Temucraft/mod-temucraft-class-tweaks.git
+https://github.com/Temucraft/mod-temucraft-classes.git
+https://github.com/Temucraft/mod-temucraft-client-version.git
+https://github.com/Temucraft/mod-temucraft-costumes.git
+https://github.com/Temucraft/mod-temucraft-courier.git
+https://github.com/Temucraft/mod-temucraft-creatures.git
+https://github.com/Temucraft/mod-temucraft-day-cycle.git
+https://github.com/Temucraft/mod-temucraft-dungeon-tokens.git
+https://github.com/Temucraft/mod-temucraft-events.git
+https://github.com/Temucraft/mod-temucraft-expeditions.git
+https://github.com/Temucraft/mod-temucraft-firelands.git
+https://github.com/Temucraft/mod-temucraft-first-mount.git
+https://github.com/Temucraft/mod-temucraft-followers.git
+https://github.com/Temucraft/mod-temucraft-gear.git
+https://github.com/Temucraft/mod-temucraft-guild-perks.git
+https://github.com/Temucraft/mod-temucraft-halls-of-origination.git
+https://github.com/Temucraft/mod-temucraft-housing.git
+https://github.com/Temucraft/mod-temucraft-journal.git
+https://github.com/Temucraft/mod-temucraft-legacy.git
+https://github.com/Temucraft/mod-temucraft-library.git
+https://github.com/Temucraft/mod-temucraft-lost-city.git
+https://github.com/Temucraft/mod-temucraft-merchants.git
+https://github.com/Temucraft/mod-temucraft-mogushan-vaults.git
+https://github.com/Temucraft/mod-temucraft-new-spells.git
+https://github.com/Temucraft/mod-temucraft-professions.git
+https://github.com/Temucraft/mod-temucraft-pvp.git
+https://github.com/Temucraft/mod-temucraft-racials.git
+https://github.com/Temucraft/mod-temucraft-ranged-autoattack.git
+https://github.com/Temucraft/mod-temucraft-revives.git
+https://github.com/Temucraft/mod-temucraft-rogue-disguise.git
+https://github.com/Temucraft/mod-temucraft-scenarios.git
+https://github.com/Temucraft/mod-temucraft-set-bonuses.git
+https://github.com/Temucraft/mod-temucraft-shop.git
+https://github.com/Temucraft/mod-temucraft-siege-of-orgrimmar.git
+https://github.com/Temucraft/mod-temucraft-spellbook.git
+https://github.com/Temucraft/mod-temucraft-starting-zone.git
+https://github.com/Temucraft/mod-temucraft-temple-of-the-jade-serpent.git
+https://github.com/Temucraft/mod-temucraft-threat.git
+https://github.com/Temucraft/mod-temucraft-throne-of-the-four-winds.git
+https://github.com/Temucraft/mod-temucraft-titles.git
+https://github.com/Temucraft/mod-temucraft-travel.git
+https://github.com/Temucraft/mod-temucraft-vortex-pinnacle.git
+https://github.com/Temucraft/mod-temucraft-well-of-eternity.git
+https://github.com/Temucraft/mod-temucraft-zone-access.git
+https://github.com/TheSCREWEDSoftware/mod-dynamic-scaling.git
+https://github.com/TheSCREWEDSoftware/mod-combo-points.git
+https://github.com/TheSCREWEDSoftware/mod-ryans-debug.git
