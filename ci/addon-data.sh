@@ -4,7 +4,9 @@
 #
 # Needs: a MySQL server reachable as $MYSQL (default "mysql -h127.0.0.1 -uroot -proot"), git, python3.
 # Optional: DBC_ZIP_URL, a zip of the client DBCs (Spell, SpellDuration, Talent, FactionTemplate, SkillLine,
-# SkillLineAbility, SkillRaceClassInfo): without it the generators that need DBCs are skipped.
+# SkillLineAbility, SkillRaceClassInfo) and, under stock/, the stock 3.3.5a ones (Spell, Talent, TalentTab, SkillLine,
+# SkillLineAbility, SkillRaceClassInfo, SpellIcon, SpellDuration, SpellRadius, SpellRange, SpellCastTimes,
+# SpellRuneCost): without it the generators that need DBCs are skipped.
 # Optional: PUSH=true and a token git can use (gh auth setup-git), to push the changes.
 set -euo pipefail
 
@@ -46,7 +48,10 @@ echo "SQL statements that failed (other tables or engines; usually harmless): $(
 $MYSQL -N -e "SELECT CONCAT('trainer spells: ', COUNT(*)) FROM $DB.trainer_spell"
 
 if [ -n "${DBC_ZIP_URL:-}" ]; then
-  curl -fsSL "$DBC_ZIP_URL" -o dbc.zip && rm -rf dbc && mkdir dbc && unzip -q -j dbc.zip -d dbc
+  # our DBCs at the top of the zip, the stock 3.3.5a ones (for the AoWoW changes page) under stock/
+  curl -fsSL "$DBC_ZIP_URL" -o dbc.zip && rm -rf dbc dbc-stock && mkdir dbc dbc-stock
+  unzip -q -j dbc.zip -x 'stock/*' -d dbc
+  unzip -q -j dbc.zip 'stock/*' -d dbc-stock 2>/dev/null || true
 fi
 
 # commits the folder if it changed: commit <repo dir> <message>
@@ -73,6 +78,18 @@ if [ -d dbc ]; then
   git clone -q https://github.com/Temucraft/TemucraftLossOfControl.git
   python3 -I TemucraftLossOfControl/tools/gen_loc_data.py TemucraftLossOfControl/TemucraftLossOfControl/Data.lua dbc/Spell.dbc --duration dbc/SpellDuration.dbc
   commit TemucraftLossOfControl "Spell list from the Temucraft Spell.dbc"
+
+  # AoWoW changes page: stock DBCs against ours (the zip's, then every module's client patch) and this database
+  if [ -n "$(ls dbc-stock 2>/dev/null)" ]; then
+    rm -rf aowow
+    git clone -q --depth 1 --filter=blob:none --sparse https://github.com/Temucraft/aowow.git aowow
+    git -C aowow sparse-checkout set setup/temucraft setup/tools
+    python3 -I aowow/setup/tools/temucraft-changes.py --stock dbc-stock --layer dbc --modules modules --db "$DB" \
+      --mysql "$MYSQL" --notes aowow/setup/temucraft/changes-notes.json -o aowow/setup/temucraft/changes.json
+    commit aowow "Changes page data from the Temucraft DBCs and database"
+  else
+    summary+=("AoWoW changes skipped: the DBC zip has no stock/ folder")
+  fi
 else
   summary+=("DBC generators skipped: set the DBC_ZIP_URL secret")
 fi
