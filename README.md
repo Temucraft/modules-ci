@@ -20,3 +20,23 @@ The server builds from the forks, so a broken upstream change never reaches it. 
 only reports.
 
 To get the tested versions onto the server: `cd /root/AzerothCore/Source && ./cloneModules.sh --pull`, then compile.
+
+## Addon data (`addon-data` workflow)
+
+Daily (03:23 UTC), after every weekly build, or by hand, it builds the Temucraft world database from SQL alone: the
+core fork's `data/sql` plus every module in `modulesList.txt` (no compile, MySQL 8.4 in the runner). Then each of our
+addons makes its data from it and the changed files are committed to the addon's repository:
+
+| Addon | Generator | Data |
+| --- | --- | --- |
+| What's Training (Temucraft) | `tools/gen_wt_data.py` | class trainer spells, level, cost, faction, talent prerequisites |
+| Temucraft Loss of Control | `tools/gen_loc_data.py` | control spells and interrupt lockouts from Spell.dbc |
+
+Secrets (org or repository):
+- `FORK_SYNC_TOKEN` (already used by the weekly build): reads private modules and pushes to the addon repositories.
+  Without it the data is made but not pushed.
+- `DBC_ZIP_URL`: the address of `addon-data/dbc.zip` on our server (it comes with `4 - Upload release`). The client
+  DBCs the generators read; without it those generators are skipped.
+
+The SQL statements that failed (statements for tables that only exist with other modules, and the like) are kept as
+the `sql-errors` artifact. Questie's database, GatherMate spawns and AtlasLoot loot are the next generators to add.
