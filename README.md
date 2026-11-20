@@ -31,6 +31,7 @@ addons makes its data from it and the changed files are committed to the addon's
 | --- | --- | --- |
 | What's Training (Temucraft) | `tools/gen_wt_data.py` | class trainer spells, level, cost, faction, talent prerequisites |
 | Temucraft Loss of Control | `tools/gen_loc_data.py` | control spells and interrupt lockouts from Spell.dbc |
+| Questie (Temucraft fork) | `ci/gen_questie_db.py` (here) | quests, quest givers and enders, NPC and object spawns in zone coordinates (our WorldMapArea.dbc), quest items and what drops or sells them. Runs only if Temucraft/Questie exists. The fork's own rows stay; ours are added for quests it doesn't have (our content), and its NPC / object / item rows those quests use are replaced. `--mode replace` makes the data ours alone. AreaTrigger.dbc in the zip adds exploration objectives, FactionTemplate.dbc the friendly / hostile marks. |
 
 Secrets (org or repository):
 - `FORK_SYNC_TOKEN` (already used by the weekly build): reads private modules and pushes to the addon repositories.
@@ -39,4 +40,4 @@ Secrets (org or repository):
   DBCs the generators read; without it those generators are skipped.
 
 The SQL statements that failed (statements for tables that only exist with other modules, and the like) are kept as
-the `sql-errors` artifact. Questie's database, GatherMate spawns and AtlasLoot loot are the next generators to add.
+the `sql-errors` artifact. AtlasLoot loot is the next generator to add.

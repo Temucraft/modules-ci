@@ -4,11 +4,12 @@
 #
 # Needs: a MySQL server reachable as $MYSQL (default "mysql -h127.0.0.1 -uroot -proot"), git, python3.
 # Optional: DBC_ZIP_URL, a zip of the client DBCs (Spell, SpellDuration, Talent, FactionTemplate, SkillLine,
-# SkillLineAbility, SkillRaceClassInfo, WorldMapArea) and, under stock/, the stock 3.3.5a ones (Spell, Talent, TalentTab, SkillLine,
+# SkillLineAbility, SkillRaceClassInfo, WorldMapArea, AreaTrigger) and, under stock/, the stock 3.3.5a ones (Spell, Talent, TalentTab, SkillLine,
 # SkillLineAbility, SkillRaceClassInfo, SpellIcon, SpellDuration, SpellRadius, SpellRange, SpellCastTimes,
 # SpellRuneCost): without it the generators that need DBCs are skipped.
 # Optional: PUSH=true and a token git can use (gh auth setup-git), to push the changes.
 set -euo pipefail
+CI_DIR=$(cd "$(dirname "$0")" && pwd)
 
 MYSQL=${MYSQL:-"mysql -h127.0.0.1 -uroot -proot"}
 DB=${DB:-temucraft_world}
@@ -87,6 +88,21 @@ if [ -d dbc ]; then
     commit GatherMate-Temucraft "Node data from the Temucraft world database"
   else
     summary+=("GatherMate skipped: the DBC zip has no WorldMapArea.dbc")
+  fi
+
+  # Questie: quests, NPCs, objects and items from this database, into the Temucraft/Questie fork (only if the fork
+  # exists). Rows the fork already has stay (they carry Questie's own corrections); ours are added for our quests.
+  QUESTIE_REPO=${QUESTIE_REPO:-https://github.com/Temucraft/Questie.git}
+  if [ ! -f dbc/WorldMapArea.dbc ]; then
+    summary+=("Questie skipped: the DBC zip has no WorldMapArea.dbc")
+  elif git ls-remote --exit-code -q "$QUESTIE_REPO" HEAD > /dev/null 2>&1; then
+    rm -rf Questie
+    git clone -q --depth 1 --filter=blob:none --sparse "$QUESTIE_REPO" Questie
+    git -C Questie sparse-checkout set Database/AzerothCore
+    python3 -I "$CI_DIR/gen_questie_db.py" --db "$DB" --dbc dbc --mysql "$MYSQL" --out Questie/Database/AzerothCore
+    commit Questie "Quest, NPC, object and item data from the Temucraft world database"
+  else
+    summary+=("Questie skipped: $QUESTIE_REPO doesn't exist")
   fi
 
   # AoWoW changes page: stock DBCs against ours (the zip's, then every module's client patch) and this database
