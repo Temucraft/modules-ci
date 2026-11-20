@@ -4,7 +4,7 @@
 #
 # Needs: a MySQL server reachable as $MYSQL (default "mysql -h127.0.0.1 -uroot -proot"), git, python3.
 # Optional: DBC_ZIP_URL, a zip of the client DBCs (Spell, SpellDuration, Talent, FactionTemplate, SkillLine,
-# SkillLineAbility, SkillRaceClassInfo) and, under stock/, the stock 3.3.5a ones (Spell, Talent, TalentTab, SkillLine,
+# SkillLineAbility, SkillRaceClassInfo, WorldMapArea) and, under stock/, the stock 3.3.5a ones (Spell, Talent, TalentTab, SkillLine,
 # SkillLineAbility, SkillRaceClassInfo, SpellIcon, SpellDuration, SpellRadius, SpellRange, SpellCastTimes,
 # SpellRuneCost): without it the generators that need DBCs are skipped.
 # Optional: PUSH=true and a token git can use (gh auth setup-git), to push the changes.
@@ -78,6 +78,16 @@ if [ -d dbc ]; then
   git clone -q https://github.com/Temucraft/TemucraftLossOfControl.git
   python3 -I TemucraftLossOfControl/tools/gen_loc_data.py TemucraftLossOfControl/TemucraftLossOfControl/Data.lua dbc/Spell.dbc --duration dbc/SpellDuration.dbc
   commit TemucraftLossOfControl "Spell list from the Temucraft Spell.dbc"
+
+  # GatherMate: herb, ore, gas, fishing and treasure spawns, zones from our WorldMapArea.dbc
+  if [ -f dbc/WorldMapArea.dbc ]; then
+    rm -rf GatherMate-Temucraft
+    git clone -q https://github.com/Temucraft/GatherMate-Temucraft.git
+    python3 -I GatherMate-Temucraft/tools/gen_gm_data.py --db "$DB" --dbc dbc --mysql "$MYSQL"
+    commit GatherMate-Temucraft "Node data from the Temucraft world database"
+  else
+    summary+=("GatherMate skipped: the DBC zip has no WorldMapArea.dbc")
+  fi
 
   # AoWoW changes page: stock DBCs against ours (the zip's, then every module's client patch) and this database
   if [ -n "$(ls dbc-stock 2>/dev/null)" ]; then
