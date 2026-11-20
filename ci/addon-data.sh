@@ -4,8 +4,8 @@
 #
 # Needs: a MySQL server reachable as $MYSQL (default "mysql -h127.0.0.1 -uroot -proot"), git, python3.
 # Optional: DBC_ZIP_URL, a zip of the client DBCs (Spell, SpellDuration, Talent, FactionTemplate, SkillLine,
-# SkillLineAbility, SkillRaceClassInfo, WorldMapArea, AreaTrigger; Leatrix Maps and AtlasLoot also use Map, AreaTable
-# and TaxiNodes when they are there) and, under stock/, the stock 3.3.5a ones (Spell, Talent, TalentTab, SkillLine,
+# SkillLineAbility, SkillRaceClassInfo, WorldMapArea, AreaTrigger; Leatrix Maps, AtlasLoot and the Questie zones also
+# use Map, AreaTable and TaxiNodes when they are there) and, under stock/, the stock 3.3.5a ones (Spell, Talent, TalentTab, SkillLine,
 # SkillLineAbility, SkillRaceClassInfo, SpellIcon, SpellDuration, SpellRadius, SpellRange, SpellCastTimes,
 # SpellRuneCost): without it the generators that need DBCs are skipped.
 # Optional: PUSH=true and a token git can use (gh auth setup-git), to push the changes.
@@ -131,15 +131,19 @@ if [ -d dbc ]; then
 
   # Questie: quests, NPCs, objects and items from this database, into the Temucraft/Questie fork (only if the fork
   # exists). Rows the fork already has stay (they carry Questie's own corrections); ours are added for our quests.
+  # Then the zones of our WorldMapArea.dbc the fork lacks (Database/Zones/temucraftZones.lua; the fork's own zone
+  # files are only read), so the pins in our new zones show.
   QUESTIE_REPO=${QUESTIE_REPO:-https://github.com/Temucraft/Questie.git}
   if [ ! -f dbc/WorldMapArea.dbc ]; then
     summary+=("Questie skipped: the DBC zip has no WorldMapArea.dbc")
   elif git ls-remote --exit-code -q "$QUESTIE_REPO" HEAD > /dev/null 2>&1; then
     rm -rf Questie
     git clone -q --depth 1 --filter=blob:none --sparse "$QUESTIE_REPO" Questie
-    git -C Questie sparse-checkout set Database/AzerothCore
+    git -C Questie sparse-checkout set --no-cone /Database/AzerothCore/ /Database/Zones/ /Compat/UiMapData.lua \
+      /Compat/Map.lua /Localization/lookups/lookupZones.lua
     python3 -I "$CI_DIR/gen_questie_db.py" --db "$DB" --dbc dbc --mysql "$MYSQL" --out Questie/Database/AzerothCore
-    commit Questie "Quest, NPC, object and item data from the Temucraft world database"
+    python3 -I "$CI_DIR/gen_questie_zones.py" --dbc dbc --questie Questie
+    commit Questie "Quest, NPC, object, item and zone data from the Temucraft world database and DBCs"
   else
     summary+=("Questie skipped: $QUESTIE_REPO doesn't exist")
   fi
