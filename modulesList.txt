@@ -11,6 +11,8 @@ https://github.com/Temucraft/mod-worgoblin-high-elf.git retail-races
 https://github.com/Temucraft/mod-temucraft.git
 https://github.com/Temucraft/mod-temucraft-world.git
 https://github.com/Temucraft/mod-temucraft-instances.git
+https://github.com/Temucraft/mod-temucraft-rotation.git
+https://github.com/Temucraft/mod-temucraft-crazy.git
 https://github.com/Temucraft/mod-temucraft-lostlands.git
 https://github.com/Temucraft/mod-temucraft-account-wide.git
 https://github.com/Temucraft/mod-temucraft-aoe-loot.git
