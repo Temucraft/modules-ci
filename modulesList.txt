@@ -12,6 +12,7 @@ https://github.com/Temucraft/mod-temucraft.git
 https://github.com/Temucraft/mod-temucraft-world.git
 https://github.com/Temucraft/mod-temucraft-instances.git
 https://github.com/Temucraft/mod-temucraft-rotation.git
+https://github.com/Temucraft/mod-temucraft-player-settings.git
 https://github.com/Temucraft/mod-temucraft-crazy.git
 https://github.com/Temucraft/mod-temucraft-lostlands.git
 https://github.com/Temucraft/mod-temucraft-account-wide.git
