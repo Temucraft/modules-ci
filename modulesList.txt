@@ -50,9 +50,9 @@ https://github.com/Temucraft/mod-temucraft-threat.git
 https://github.com/Temucraft/mod-temucraft-titles.git
 https://github.com/Temucraft/mod-temucraft-travel.git
 https://github.com/Temucraft/mod-temucraft-zone-access.git
-https://github.com/Temucraft/mod-dynamic-scaling.git  # fork of TheSCREWEDSoftware/mod-dynamic-scaling
-https://github.com/Temucraft/mod-combo-points.git  # fork of TheSCREWEDSoftware/mod-combo-points
-https://github.com/Temucraft/mod-ryans-debug.git  # fork of TheSCREWEDSoftware/mod-ryans-debug
-https://github.com/Temucraft/mod-breaking-news-override.git  # fork of azerothcore/mod-breaking-news-override
+https://github.com/TheSCREWEDSoftware/mod-dynamic-scaling.git
+https://github.com/TheSCREWEDSoftware/mod-combo-points.git
+https://github.com/TheSCREWEDSoftware/mod-ryans-debug.git
+https://github.com/azerothcore/mod-breaking-news-override.git
 https://github.com/Temucraft/mod-questie-bridge.git
 https://github.com/Temucraft/mod-ah-bot.git  # fork of azerothcore/mod-ah-bot
